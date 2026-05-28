@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { FaInstagram, FaFacebookF, FaShippingFast, FaAward } from 'react-icons/fa'
 import { MdOutlineWorkspacePremium, MdDiamond } from 'react-icons/md'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Autoplay, EffectCoverflow, Pagination } from 'swiper/modules'
+import { Autoplay, EffectCoverflow, Mousewheel, Pagination } from 'swiper/modules'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import 'swiper/css'
@@ -258,23 +258,34 @@ export default function App() {
 
       <section id="collection" className="section reveal-wrap">
         <h2 className="reveal">Featured Collection</h2>
-        <Swiper modules={[Autoplay]} autoplay={{ delay: 2400 }} slidesPerView={1.15} spaceBetween={20} breakpoints={{ 768: { slidesPerView: 2.4 }, 1024: { slidesPerView: 3.3 } }}>
-          {products.slice(0, 4).map((p) => (
-            <SwiperSlide key={p.name}>
-              <div className="product-card reveal glass">
-                <img src={p.img} alt={p.name} />
-                <h3>{p.name}</h3>
-                <p className="product-subline">{p.brand} • {p.strapMaterial} • {detailByCategory[p.category].waterRes}</p>
-                <div className="offer-price-row premium-price">
-                  <p>{formatPrice(p.price)}</p>
-                  <span>{formatPrice(p.originalPrice)}</span>
-                  <b>{getDiscount(p.price, p.originalPrice)}% OFF</b>
+        <div data-lenis-prevent>
+          <Swiper
+            modules={[Autoplay, Mousewheel]}
+            autoplay={{ delay: 2400 }}
+            mousewheel={{ forceToAxis: true, releaseOnEdges: true }}
+            grabCursor
+            touchStartPreventDefault={false}
+            slidesPerView={1.15}
+            spaceBetween={20}
+            breakpoints={{ 768: { slidesPerView: 2.4 }, 1024: { slidesPerView: 3.3 } }}
+          >
+            {products.slice(0, 4).map((p) => (
+              <SwiperSlide key={p.name}>
+                <div className="product-card reveal glass">
+                  <img src={p.img} alt={p.name} />
+                  <h3>{p.name}</h3>
+                  <p className="product-subline">{p.brand} • {p.strapMaterial} • {detailByCategory[p.category].waterRes}</p>
+                  <div className="offer-price-row premium-price">
+                    <p>{formatPrice(p.price)}</p>
+                    <span>{formatPrice(p.originalPrice)}</span>
+                    <b>{getDiscount(p.price, p.originalPrice)}% OFF</b>
+                  </div>
+                  <button className="btn secondary" onClick={() => setQuickViewProduct(p)}>Quick View</button>
                 </div>
-                <button className="btn secondary" onClick={() => setQuickViewProduct(p)}>Quick View</button>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </section>
 
       <section id="men-section" className="section reveal-wrap top-target">
