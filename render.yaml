@@ -2,5 +2,6 @@ services:
   - type: web
     name: kriscel-watches
     runtime: static
+    rootDir: frontend
     buildCommand: npm ci && npm run build
     staticPublishPath: dist
