@@ -275,11 +275,6 @@ export default function App() {
                   <img src={p.img} alt={p.name} />
                   <h3>{p.name}</h3>
                   <p className="product-subline">{p.brand} • {p.strapMaterial} • {detailByCategory[p.category].waterRes}</p>
-                  <div className="offer-price-row premium-price">
-                    <p>{formatPrice(p.price)}</p>
-                    <span>{formatPrice(p.originalPrice)}</span>
-                    <b>{getDiscount(p.price, p.originalPrice)}% OFF</b>
-                  </div>
                   <button className="btn secondary" onClick={() => setQuickViewProduct(p)}>Quick View</button>
                 </div>
               </SwiperSlide>
@@ -298,11 +293,16 @@ export default function App() {
               <h4>{p.name}</h4>
               <p className="product-subline">{p.brand} • {p.strapMaterial} • {detailByCategory[p.category].waterRes}</p>
               <p className="catalog-cat">Men&apos;s Premium</p>
-              <div className="premium-price">
-                <p className="catalog-price">{formatPrice(p.price)}</p>
-                <p className="catalog-original">{formatPrice(p.originalPrice)}</p>
-                <span className="catalog-offer">{getDiscount(p.price, p.originalPrice)}% OFF</span>
-              </div>
+              <button
+                type="button"
+                className="btn secondary view-btn"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setQuickViewProduct(p)
+                }}
+              >
+                View
+              </button>
             </article>
           ))}
         </div>
@@ -318,11 +318,6 @@ export default function App() {
               <h4>{p.name}</h4>
               <p className="product-subline">{p.brand} • {p.strapMaterial} • {detailByCategory[p.category].waterRes}</p>
               <p className="catalog-cat">{p.category}</p>
-              <div className="premium-price">
-                <p className="catalog-price">{formatPrice(p.price)}</p>
-                <p className="catalog-original">{formatPrice(p.originalPrice)}</p>
-                <span className="catalog-offer">{getDiscount(p.price, p.originalPrice)}% OFF</span>
-              </div>
               <button
                 type="button"
                 className="btn secondary view-btn"
@@ -348,11 +343,16 @@ export default function App() {
               <h4>{p.name}</h4>
               <p className="product-subline">{p.brand} • {p.strapMaterial} • {detailByCategory[p.category].waterRes}</p>
               <p className="catalog-cat">Connected Luxury</p>
-              <div className="premium-price">
-                <p className="catalog-price">{formatPrice(p.price)}</p>
-                <p className="catalog-original">{formatPrice(p.originalPrice)}</p>
-                <span className="catalog-offer">{getDiscount(p.price, p.originalPrice)}% OFF</span>
-              </div>
+              <button
+                type="button"
+                className="btn secondary view-btn"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setQuickViewProduct(p)
+                }}
+              >
+                View
+              </button>
             </article>
           ))}
         </div>
@@ -399,11 +399,16 @@ export default function App() {
               <h4>{p.name}</h4>
               <p className="product-subline">{p.brand} • {p.strapMaterial} • {detailByCategory[p.category].waterRes}</p>
               <p className="catalog-cat">Limited Time Deal</p>
-              <div className="premium-price">
-                <p className="catalog-price">{formatPrice(p.price)}</p>
-                <p className="catalog-original">{formatPrice(p.originalPrice)}</p>
-                <span className="catalog-offer">{getDiscount(p.price, p.originalPrice)}% OFF</span>
-              </div>
+              <button
+                type="button"
+                className="btn secondary view-btn"
+                onClick={(e) => {
+                  e.stopPropagation()
+                  setQuickViewProduct(p)
+                }}
+              >
+                View
+              </button>
             </article>
           ))}
         </div>
@@ -469,11 +474,6 @@ export default function App() {
               <h4>{p.name}</h4>
               <p className="product-subline">{p.brand} • {p.strapMaterial} • {detailByCategory[p.category].waterRes}</p>
               <p className="catalog-cat">{p.category}</p>
-              <div className="premium-price">
-                <p className="catalog-price">{formatPrice(p.price)}</p>
-                <p className="catalog-original">{formatPrice(p.originalPrice)}</p>
-                <span className="catalog-offer">{getDiscount(p.price, p.originalPrice)}% OFF</span>
-              </div>
             </article>
           ))}
         </div>
@@ -545,9 +545,6 @@ export default function App() {
               <p className="tag">Kriscel Signature</p>
               <h3>{quickViewProduct.name}</h3>
               <p className="quick-view-subline">{quickViewProduct.brand} • {quickViewProduct.category} • {quickViewProduct.strapMaterial}</p>
-              <p>{formatPrice(quickViewProduct.price)}</p>
-              <p className="catalog-original">{formatPrice(quickViewProduct.originalPrice)}</p>
-              <span className="catalog-offer">{getDiscount(quickViewProduct.price, quickViewProduct.originalPrice)}% OFF</span>
               <p>Rose gold body, diamond accents, and precision movement crafted for modern elegance.</p>
               <div className="quick-view-specs">
                 <div><strong>Movement</strong><small>{detailByCategory[quickViewProduct.category].movement}</small></div>
