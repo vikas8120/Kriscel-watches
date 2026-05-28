@@ -36,7 +36,20 @@ const products: Product[] = [
   { name: 'Zen Track', price: 790, originalPrice: 980, brand: 'Samsung', category: 'Smart', strapMaterial: 'Silicone', img: 'https://images.unsplash.com/photo-1510017803434-a899398421b3?auto=format&fit=crop&w=900&q=80' },
 ]
 
-const brands = ['OMEGA', 'DIOR', 'CHANEL', 'ROLEX', 'CARTIER', 'TISSOT', 'GUCCI']
+type Brand = {
+  name: string
+  logo: string
+}
+
+const brands: Brand[] = [
+  { name: 'OMEGA', logo: 'https://upload.wikimedia.org/wikipedia/commons/5/53/Omega_Logo.svg' },
+  { name: 'DIOR', logo: 'https://upload.wikimedia.org/wikipedia/commons/8/8d/Christian_Dior_SE_logo.svg' },
+  { name: 'CHANEL', logo: 'https://upload.wikimedia.org/wikipedia/commons/8/89/Chanel_logo.svg' },
+  { name: 'ROLEX', logo: 'https://upload.wikimedia.org/wikipedia/commons/f/f4/Rolex_logo.svg' },
+  { name: 'CARTIER', logo: 'https://upload.wikimedia.org/wikipedia/commons/8/8b/Cartier_logo_no_background.svg' },
+  { name: 'TISSOT', logo: 'https://upload.wikimedia.org/wikipedia/commons/e/e3/Tissot_logo.svg' },
+  { name: 'GUCCI', logo: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/Gucci_Logo.svg' },
+]
 const navLinks = [
   { label: 'Home', href: '#home' },
   { label: 'Collection', href: '#collection' },
@@ -72,6 +85,7 @@ export default function App() {
   const [selectedStrapMaterial, setSelectedStrapMaterial] = useState<'All' | Product['strapMaterial']>('All')
   const [activeTopTab, setActiveTopTab] = useState('All Watches')
   const [heroImageIndex, setHeroImageIndex] = useState(0)
+  const [loadedBrandLogos, setLoadedBrandLogos] = useState<Record<string, boolean>>({})
 
   const scrollToSection = (id: string) => {
     const target = document.getElementById(id)
@@ -234,10 +248,10 @@ export default function App() {
       <section className="marquee-wrap">
         <div className="marquee">
           <div className="marquee-track">
-            {brands.map((b, i) => <span key={`a-${i}`}>{b}</span>)}
+            {brands.map((b, i) => <span key={`a-${i}`}>{b.name}</span>)}
           </div>
           <div className="marquee-track" aria-hidden="true">
-            {brands.map((b, i) => <span key={`b-${i}`}>{b}</span>)}
+            {brands.map((b, i) => <span key={`b-${i}`}>{b.name}</span>)}
           </div>
         </div>
       </section>
@@ -337,8 +351,19 @@ export default function App() {
         <h2 className="reveal">Brands</h2>
         <div className="brand-grid">
           {brands.map((b) => (
-            <button key={b} type="button" className="brand-chip" onClick={() => { setSearchTerm(b.toLowerCase()); scrollToSection('collection') }}>
-              {b}
+            <button key={b.name} type="button" className="brand-chip" onClick={() => { setSearchTerm(b.name.toLowerCase()); scrollToSection('collection') }}>
+              <img
+                className="brand-logo"
+                src={b.logo}
+                alt={`${b.name} logo`}
+                loading="lazy"
+                onLoad={() => setLoadedBrandLogos((prev) => ({ ...prev, [b.name]: true }))}
+                onError={(e) => {
+                  setLoadedBrandLogos((prev) => ({ ...prev, [b.name]: false }))
+                  e.currentTarget.style.display = 'none'
+                }}
+              />
+              {!loadedBrandLogos[b.name] && <span className="brand-label">{b.name}</span>}
             </button>
           ))}
         </div>
