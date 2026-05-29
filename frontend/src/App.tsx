@@ -42,13 +42,13 @@ type Brand = {
 }
 
 const brands: Brand[] = [
-  { name: 'OMEGA', logo: 'https://upload.wikimedia.org/wikipedia/commons/5/53/Omega_Logo.svg' },
-  { name: 'DIOR', logo: 'https://upload.wikimedia.org/wikipedia/commons/8/8d/Christian_Dior_SE_logo.svg' },
-  { name: 'CHANEL', logo: 'https://upload.wikimedia.org/wikipedia/commons/8/89/Chanel_logo.svg' },
-  { name: 'ROLEX', logo: 'https://upload.wikimedia.org/wikipedia/commons/f/f4/Rolex_logo.svg' },
-  { name: 'CARTIER', logo: 'https://upload.wikimedia.org/wikipedia/commons/8/8b/Cartier_logo_no_background.svg' },
-  { name: 'TISSOT', logo: 'https://upload.wikimedia.org/wikipedia/commons/e/e3/Tissot_logo.svg' },
-  { name: 'GUCCI', logo: 'https://upload.wikimedia.org/wikipedia/commons/6/6a/Gucci_Logo.svg' },
+  { name: 'OMEGA', logo: 'https://commons.wikimedia.org/wiki/Special:FilePath/Omega%20Logo.svg' },
+  { name: 'DIOR', logo: 'https://commons.wikimedia.org/wiki/Special:FilePath/Dior%20Logo.svg' },
+  { name: 'CHANEL', logo: 'https://commons.wikimedia.org/wiki/Special:FilePath/Chanel%20logo.svg' },
+  { name: 'ROLEX', logo: 'https://commons.wikimedia.org/wiki/Special:FilePath/Logo%20da%20Rolex.png' },
+  { name: 'CARTIER', logo: 'https://commons.wikimedia.org/wiki/Special:FilePath/Cartier%20logo.svg' },
+  { name: 'TISSOT', logo: 'https://commons.wikimedia.org/wiki/Special:FilePath/Tissot%20Logo.svg' },
+  { name: 'GUCCI', logo: 'https://commons.wikimedia.org/wiki/Special:FilePath/Gucci%20logo.svg' },
 ]
 const navLinks = [
   { label: 'Home', href: '#home' },
@@ -86,7 +86,6 @@ export default function App() {
   const [activeTopTab, setActiveTopTab] = useState('All Watches')
   const [heroImageIndex, setHeroImageIndex] = useState(0)
   const [loadedBrandLogos, setLoadedBrandLogos] = useState<Record<string, boolean>>({})
-
   const scrollToSection = (id: string) => {
     const target = document.getElementById(id)
     if (!target) return
@@ -248,10 +247,32 @@ export default function App() {
       <section className="marquee-wrap">
         <div className="marquee">
           <div className="marquee-track">
-            {brands.map((b, i) => <span key={`a-${i}`}>{b.name}</span>)}
+            {brands.map((b, i) => (
+              <img
+                key={`a-${i}`}
+                className="marquee-logo"
+                src={b.logo}
+                alt={`${b.name} logo`}
+                loading="lazy"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none'
+                }}
+              />
+            ))}
           </div>
           <div className="marquee-track" aria-hidden="true">
-            {brands.map((b, i) => <span key={`b-${i}`}>{b.name}</span>)}
+            {brands.map((b, i) => (
+              <img
+                key={`b-${i}`}
+                className="marquee-logo"
+                src={b.logo}
+                alt=""
+                loading="lazy"
+                onError={(e) => {
+                  e.currentTarget.style.display = 'none'
+                }}
+              />
+            ))}
           </div>
         </div>
       </section>
