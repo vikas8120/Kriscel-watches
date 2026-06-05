@@ -1,5 +1,5 @@
-﻿import { useEffect, useMemo, useRef, useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
+﻿import { useEffect, useMemo, useState } from 'react'
+import { motion } from 'framer-motion'
 import { FaInstagram, FaFacebookF, FaShippingFast, FaAward } from 'react-icons/fa'
 import { MdOutlineWorkspacePremium, MdDiamond } from 'react-icons/md'
 import { Swiper, SwiperSlide } from 'swiper/react'
@@ -64,10 +64,7 @@ const strapMaterialFilters: Array<Product['strapMaterial']> = ['Bimetal', '18 Ka
 const formatPrice = (value: number) => `$${value.toLocaleString()}`
 const getDiscount = (price: number, originalPrice: number) => Math.round(((originalPrice - price) / originalPrice) * 100)
 const fallbackImage = 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=900&q=80'
-const heroBackgroundImages = [
-  '/hero-luxury-watch.png',
-  '/hero-luxury-watch-2.png',
-]
+const heroBackgroundVideo = '/hero-luxury-watch.mp4'
 const detailByCategory: Record<Product['category'], { movement: string; strap: string; waterRes: string; battery: string }> = {
   'Rose Gold': { movement: 'Japanese Quartz', strap: 'Polished Steel Mesh', waterRes: '5 ATM', battery: '3 years' },
   Diamond: { movement: 'Swiss Quartz', strap: 'Crystal Bracelet', waterRes: '3 ATM', battery: '2 years' },
@@ -76,7 +73,6 @@ const detailByCategory: Record<Product['category'], { movement: string; strap: s
 }
 
 export default function App() {
-  const heroRef = useRef<HTMLDivElement>(null)
   const [activeSection, setActiveSection] = useState('home')
   const [quickViewProduct, setQuickViewProduct] = useState<Product | null>(null)
   const [searchTerm, setSearchTerm] = useState('')
@@ -84,7 +80,6 @@ export default function App() {
   const [sortBy, setSortBy] = useState('featured')
   const [selectedStrapMaterial, setSelectedStrapMaterial] = useState<'All' | Product['strapMaterial']>('All')
   const [activeTopTab, setActiveTopTab] = useState('All Watches')
-  const [heroImageIndex, setHeroImageIndex] = useState(0)
   const [loadedBrandLogos, setLoadedBrandLogos] = useState<Record<string, boolean>>({})
   const scrollToSection = (id: string) => {
     const target = document.getElementById(id)
@@ -136,38 +131,6 @@ export default function App() {
       { opacity: 0, y: 40 },
       { opacity: 1, y: 0, duration: 1, stagger: 0.16, scrollTrigger: { trigger: '.reveal-wrap', start: 'top 80%' } },
     )
-
-    if (heroRef.current) {
-      const el = heroRef.current
-      const move = (e: MouseEvent) => {
-        const x = (e.clientX / window.innerWidth - 0.5) * 24
-        gsap.to('.hero-watch', { x, duration: 0.9, ease: 'power3.out' })
-      }
-      el.addEventListener('mousemove', move)
-      const heroTween = gsap.to('.hero-bg-track', {
-        xPercent: -5,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '#home',
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true,
-        },
-      })
-
-      return () => {
-        el.removeEventListener('mousemove', move)
-        heroTween.scrollTrigger?.kill()
-        heroTween.kill()
-      }
-    }
-  }, [])
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setHeroImageIndex((prev) => (prev + 1) % heroBackgroundImages.length)
-    }, 4200)
-    return () => clearInterval(interval)
   }, [])
 
   useEffect(() => {
@@ -208,27 +171,20 @@ export default function App() {
         </div>
       </header>
 
-      <section id="home" className="hero" ref={heroRef}>
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="hero-banner"
-        >
+      <section id="home" className="hero">
+        <div className="hero-banner">
           <div className="hero-bg-track">
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={heroBackgroundImages[heroImageIndex]}
-                className="hero-bg-image"
-                src={heroBackgroundImages[heroImageIndex]}
-                alt="Luxury women watch hero background"
-                style={{ objectPosition: heroImageIndex === 0 ? '70% center' : 'center center' }}
-                initial={{ opacity: 0, scale: 1.01 }}
-                animate={{ opacity: 1, scale: 1.06 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 1.1, ease: 'easeInOut' }}
-              />
-            </AnimatePresence>
+            <video
+              className="hero-bg-video"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              aria-label="Luxury women watch hero background video"
+            >
+              <source src={heroBackgroundVideo} type="video/mp4" />
+            </video>
           </div>
           <div className="hero-overlay">
             <div className="hero-copy">
@@ -241,7 +197,7 @@ export default function App() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </section>
 
       <section className="marquee-wrap">
