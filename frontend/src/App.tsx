@@ -21,19 +21,22 @@ type Product = {
   strapMaterial: 'Bimetal' | '18 Karat Gold' | 'Plastic' | 'Silicone' | 'Leather' | 'Acetate' | 'Acetate & Metal' | 'Ceramic'
 }
 
+const unsplashImage = (id: string, width: number, quality = 58) =>
+  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${width}&q=${quality}&fm=webp`
+
 const products: Product[] = [
-  { name: 'Rose Halo', price: 499, originalPrice: 649, brand: 'Fossil', category: 'Rose Gold', strapMaterial: 'Bimetal', img: 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Diamond Veil', price: 699, originalPrice: 899, brand: 'Swarovski', category: 'Diamond', strapMaterial: 'Ceramic', img: 'https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Kriscel Mini', price: 459, originalPrice: 590, brand: 'Kriscel', category: 'Fashion', strapMaterial: 'Plastic', img: 'https://images.unsplash.com/photo-1434056886845-dac89ffe9b56?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Satin Gold', price: 539, originalPrice: 710, brand: 'Casio', category: 'Rose Gold', strapMaterial: '18 Karat Gold', img: 'https://images.unsplash.com/photo-1508057198894-247b23fe5ade?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Aero Steel', price: 575, originalPrice: 740, brand: 'Seiko', category: 'Rose Gold', strapMaterial: 'Acetate & Metal', img: 'https://images.unsplash.com/photo-1549972574-8e3e1ed6a347?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Midnight Dial', price: 610, originalPrice: 790, brand: 'Tissot', category: 'Rose Gold', strapMaterial: 'Leather', img: 'https://images.unsplash.com/photo-1622434641406-a158123450f9?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Crystal Bloom', price: 620, originalPrice: 790, brand: 'Anne Klein', category: 'Diamond', strapMaterial: 'Acetate', img: 'https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Luna Mesh', price: 410, originalPrice: 520, brand: 'Titan', category: 'Fashion', strapMaterial: 'Bimetal', img: 'https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Orbit Smart', price: 880, originalPrice: 1090, brand: 'Fitbit', category: 'Smart', strapMaterial: 'Silicone', img: 'https://images.unsplash.com/photo-1544117519-31a4b719223d?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Pulse One', price: 760, originalPrice: 940, brand: 'Amazfit', category: 'Smart', strapMaterial: 'Silicone', img: 'https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Nova Sync', price: 820, originalPrice: 1010, brand: 'Garmin', category: 'Smart', strapMaterial: 'Ceramic', img: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80' },
-  { name: 'Zen Track', price: 790, originalPrice: 980, brand: 'Samsung', category: 'Smart', strapMaterial: 'Silicone', img: 'https://images.unsplash.com/photo-1510017803434-a899398421b3?auto=format&fit=crop&w=900&q=80' },
+  { name: 'Rose Halo', price: 499, originalPrice: 649, brand: 'Fossil', category: 'Rose Gold', strapMaterial: 'Bimetal', img: unsplashImage('photo-1523170335258-f5ed11844a49', 640) },
+  { name: 'Diamond Veil', price: 699, originalPrice: 899, brand: 'Swarovski', category: 'Diamond', strapMaterial: 'Ceramic', img: unsplashImage('photo-1547996160-81dfa63595aa', 640) },
+  { name: 'Kriscel Mini', price: 459, originalPrice: 590, brand: 'Kriscel', category: 'Fashion', strapMaterial: 'Plastic', img: unsplashImage('photo-1434056886845-dac89ffe9b56', 640) },
+  { name: 'Satin Gold', price: 539, originalPrice: 710, brand: 'Casio', category: 'Rose Gold', strapMaterial: '18 Karat Gold', img: unsplashImage('photo-1508057198894-247b23fe5ade', 640) },
+  { name: 'Aero Steel', price: 575, originalPrice: 740, brand: 'Seiko', category: 'Rose Gold', strapMaterial: 'Acetate & Metal', img: unsplashImage('photo-1549972574-8e3e1ed6a347', 640) },
+  { name: 'Midnight Dial', price: 610, originalPrice: 790, brand: 'Tissot', category: 'Rose Gold', strapMaterial: 'Leather', img: unsplashImage('photo-1622434641406-a158123450f9', 640) },
+  { name: 'Crystal Bloom', price: 620, originalPrice: 790, brand: 'Anne Klein', category: 'Diamond', strapMaterial: 'Acetate', img: unsplashImage('photo-1522312346375-d1a52e2b99b3', 640) },
+  { name: 'Luna Mesh', price: 410, originalPrice: 520, brand: 'Titan', category: 'Fashion', strapMaterial: 'Bimetal', img: unsplashImage('photo-1524592094714-0f0654e20314', 640) },
+  { name: 'Orbit Smart', price: 880, originalPrice: 1090, brand: 'Fitbit', category: 'Smart', strapMaterial: 'Silicone', img: unsplashImage('photo-1544117519-31a4b719223d', 640) },
+  { name: 'Pulse One', price: 760, originalPrice: 940, brand: 'Amazfit', category: 'Smart', strapMaterial: 'Silicone', img: unsplashImage('photo-1508685096489-7aacd43bd3b1', 640) },
+  { name: 'Nova Sync', price: 820, originalPrice: 1010, brand: 'Garmin', category: 'Smart', strapMaterial: 'Ceramic', img: unsplashImage('photo-1523275335684-37898b6baf30', 640) },
+  { name: 'Zen Track', price: 790, originalPrice: 980, brand: 'Samsung', category: 'Smart', strapMaterial: 'Silicone', img: unsplashImage('photo-1510017803434-a899398421b3', 640) },
 ]
 
 type Brand = {
@@ -63,7 +66,7 @@ const topTabs = ['Visit LUXE', 'All Watches', 'Men', 'Women', 'Smart', 'Brands',
 const strapMaterialFilters: Array<Product['strapMaterial']> = ['Bimetal', '18 Karat Gold', 'Plastic', 'Silicone', 'Leather', 'Acetate', 'Acetate & Metal', 'Ceramic']
 const formatPrice = (value: number) => `$${value.toLocaleString()}`
 const getDiscount = (price: number, originalPrice: number) => Math.round(((originalPrice - price) / originalPrice) * 100)
-const fallbackImage = 'https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=900&q=80'
+const fallbackImage = unsplashImage('photo-1523170335258-f5ed11844a49', 640)
 const heroBackgroundVideo = '/hero-luxury-watch.mp4'
 const detailByCategory: Record<Product['category'], { movement: string; strap: string; waterRes: string; battery: string }> = {
   'Rose Gold': { movement: 'Japanese Quartz', strap: 'Polished Steel Mesh', waterRes: '5 ATM', battery: '3 years' },
@@ -81,6 +84,7 @@ export default function App() {
   const [selectedStrapMaterial, setSelectedStrapMaterial] = useState<'All' | Product['strapMaterial']>('All')
   const [activeTopTab, setActiveTopTab] = useState('All Watches')
   const [loadedBrandLogos, setLoadedBrandLogos] = useState<Record<string, boolean>>({})
+  const [isNavVisible, setIsNavVisible] = useState(true)
   const scrollToSection = (id: string) => {
     const target = document.getElementById(id)
     if (!target) return
@@ -160,9 +164,40 @@ export default function App() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  useEffect(() => {
+    let lastScrollY = window.scrollY
+    let ticking = false
+
+    const updateNavVisibility = () => {
+      const currentScrollY = window.scrollY
+      const scrollingUp = currentScrollY < lastScrollY
+      const scrollingDown = currentScrollY > lastScrollY
+
+      if (currentScrollY < 64) {
+        setIsNavVisible(true)
+      } else if (scrollingUp) {
+        setIsNavVisible(true)
+      } else if (scrollingDown) {
+        setIsNavVisible(false)
+      }
+
+      lastScrollY = currentScrollY
+      ticking = false
+    }
+
+    const onScroll = () => {
+      if (ticking) return
+      ticking = true
+      window.requestAnimationFrame(updateNavVisibility)
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
     <div className="site">
-      <header className="nav glass">
+      <header className={`nav glass ${isNavVisible ? 'nav-visible' : 'nav-hidden'}`}>
         <a className="brand" href="#home" onClick={(e) => { e.preventDefault(); scrollToSection('home') }}>KRISCEL WATCHES</a>
         <div className="top-tabs">
           {topTabs.map((tab) => (
@@ -210,6 +245,7 @@ export default function App() {
                 src={b.logo}
                 alt={`${b.name} logo`}
                 loading="lazy"
+                decoding="async"
                 onError={(e) => {
                   e.currentTarget.style.display = 'none'
                 }}
@@ -224,6 +260,7 @@ export default function App() {
                 src={b.logo}
                 alt=""
                 loading="lazy"
+                decoding="async"
                 onError={(e) => {
                   e.currentTarget.style.display = 'none'
                 }}
@@ -237,9 +274,8 @@ export default function App() {
         <h2 className="reveal">Featured Collection</h2>
         <div data-lenis-prevent>
           <Swiper
-            modules={[Autoplay, Mousewheel]}
+            modules={[Autoplay]}
             autoplay={{ delay: 2400 }}
-            mousewheel={{ forceToAxis: true, releaseOnEdges: true }}
             grabCursor
             touchStartPreventDefault={false}
             slidesPerView={1.15}
@@ -249,7 +285,7 @@ export default function App() {
             {products.slice(0, 4).map((p) => (
               <SwiperSlide key={p.name}>
                 <div className="product-card reveal glass">
-                  <img src={p.img} alt={p.name} />
+                  <img src={p.img} alt={p.name} loading={p.name === products[0].name ? 'eager' : 'lazy'} decoding="async" />
                   <h3>{p.name}</h3>
                   <p className="product-subline">{p.brand} • {p.strapMaterial} • {detailByCategory[p.category].waterRes}</p>
                   <button className="btn secondary" onClick={() => setQuickViewProduct(p)}>Quick View</button>
@@ -265,7 +301,7 @@ export default function App() {
         <div className="catalog-grid men-grid">
           {products.filter((p) => p.category === 'Rose Gold').map((p) => (
             <article key={`men-${p.name}`} className="catalog-card men-card reveal" onClick={() => setQuickViewProduct(p)}>
-              <img src={p.img} alt={p.name} />
+              <img src={p.img} alt={p.name} loading="lazy" decoding="async" />
               <p className="catalog-brand">{p.brand}</p>
               <h4>{p.name}</h4>
               <p className="product-subline">{p.brand} • {p.strapMaterial} • {detailByCategory[p.category].waterRes}</p>
@@ -290,7 +326,7 @@ export default function App() {
         <div className="catalog-grid">
           {products.filter((p) => p.category === 'Fashion' || p.category === 'Diamond').map((p) => (
             <article key={`women-${p.name}`} className="catalog-card reveal" onClick={() => setQuickViewProduct(p)}>
-              <img src={p.img} alt={p.name} />
+              <img src={p.img} alt={p.name} loading="lazy" decoding="async" />
               <p className="catalog-brand">{p.brand}</p>
               <h4>{p.name}</h4>
               <p className="product-subline">{p.brand} • {p.strapMaterial} • {detailByCategory[p.category].waterRes}</p>
@@ -315,7 +351,7 @@ export default function App() {
         <div className="catalog-grid">
           {products.filter((p) => p.category === 'Smart').map((p) => (
             <article key={`smart-${p.name}`} className="catalog-card reveal" onClick={() => setQuickViewProduct(p)}>
-              <img src={p.img} alt={p.name} onError={(e) => { e.currentTarget.src = fallbackImage }} />
+              <img src={p.img} alt={p.name} loading="lazy" decoding="async" onError={(e) => { e.currentTarget.src = fallbackImage }} />
               <p className="catalog-brand">{p.brand}</p>
               <h4>{p.name}</h4>
               <p className="product-subline">{p.brand} • {p.strapMaterial} • {detailByCategory[p.category].waterRes}</p>
@@ -345,6 +381,7 @@ export default function App() {
                 src={b.logo}
                 alt={`${b.name} logo`}
                 loading="lazy"
+                decoding="async"
                 onLoad={() => setLoadedBrandLogos((prev) => ({ ...prev, [b.name]: true }))}
                 onError={(e) => {
                   setLoadedBrandLogos((prev) => ({ ...prev, [b.name]: false }))
@@ -371,7 +408,7 @@ export default function App() {
         <div className="catalog-grid">
           {products.filter((p) => getDiscount(p.price, p.originalPrice) >= 20).map((p) => (
             <article key={`offer-${p.name}`} className="catalog-card reveal" onClick={() => setQuickViewProduct(p)}>
-              <img src={p.img} alt={p.name} />
+              <img src={p.img} alt={p.name} loading="lazy" decoding="async" />
               <p className="catalog-brand">{p.brand}</p>
               <h4>{p.name}</h4>
               <p className="product-subline">{p.brand} • {p.strapMaterial} • {detailByCategory[p.category].waterRes}</p>
@@ -393,7 +430,7 @@ export default function App() {
 
       <section className="catalog-section section reveal-wrap">
         <div className="catalog-banner reveal">
-          <img src="https://images.unsplash.com/photo-1614164185128-e4ec99c436d7?auto=format&fit=crop&w=1800&q=80" alt="Women's watches banner" />
+          <img src={unsplashImage('photo-1614164185128-e4ec99c436d7', 1200)} alt="Women's watches banner" loading="lazy" decoding="async" />
           <div className="catalog-banner-overlay">
             <p>Women&apos;s Watches</p>
             <h3>Luxury Catalog Experience</h3>
@@ -446,7 +483,7 @@ export default function App() {
         <div className="catalog-grid">
           {catalogProducts.map((p) => (
             <article key={`catalog-${p.name}`} className="catalog-card reveal" onClick={() => setQuickViewProduct(p)}>
-              <img src={p.img} alt={p.name} />
+              <img src={p.img} alt={p.name} loading="lazy" decoding="async" />
               <p className="catalog-brand">{p.brand}</p>
               <h4>{p.name}</h4>
               <p className="product-subline">{p.brand} • {p.strapMaterial} • {detailByCategory[p.category].waterRes}</p>
@@ -459,7 +496,7 @@ export default function App() {
       <section id="luxury-series" className="section center showcase reveal-wrap">
         <h2 className="reveal">Watch Showcase</h2>
         <Swiper effect="coverflow" centeredSlides loop slidesPerView={1.2} modules={[EffectCoverflow, Autoplay]} autoplay={{ delay: 2200 }} coverflowEffect={{ rotate: 20, depth: 120, stretch: 0 }} breakpoints={{ 900: { slidesPerView: 2.2 } }}>
-          {products.map((p) => <SwiperSlide key={`show-${p.name}`}><img className="show-img reveal" src={p.img} alt={p.name} /></SwiperSlide>)}
+          {products.map((p) => <SwiperSlide key={`show-${p.name}`}><img className="show-img reveal" src={p.img} alt={p.name} loading="lazy" decoding="async" /></SwiperSlide>)}
         </Swiper>
       </section>
 
@@ -470,7 +507,7 @@ export default function App() {
       <section id="gallery-section" className="section insta reveal-wrap">
         <p className="tag reveal">Gallery</p>
         <div className="masonry">
-          {products.concat(products).map((p, i) => <img className="reveal" key={i} src={p.img} alt="gallery" />)}
+          {products.concat(products).map((p, i) => <img className="reveal" key={i} src={p.img} alt="gallery" loading="lazy" decoding="async" />)}
         </div>
       </section>
 
@@ -478,9 +515,11 @@ export default function App() {
         <div className="footer-col">
           <h3>Kriscel Watches</h3>
           <p>Luxury women watches with fashion-forward elegance.</p>
-          <p><strong>Email:</strong> support@kriscelwatches.com</p>
-          <p><strong>Phone:</strong> +91 98765 43210</p>
-          <p><strong>Address:</strong> UB City, Vittal Mallya Rd, Bengaluru</p>
+          <p><strong>Official Contact:</strong> Kriscel Tech Pvt. Ltd.</p>
+          <p><strong>Email:</strong> <a href="mailto:Info@kriscel.com">Info@kriscel.com</a></p>
+          <p><strong>Phone:</strong> <a href="tel:+918985419420">+91 8985419420</a></p>
+          <p><strong>Address:</strong> 229, BHARTHAL, SECTOR - 26, DWARKA, South West Delhi, Delhi, 110077</p>
+          <p><strong>Website:</strong> <a href="https://kriscel.com/" target="_blank" rel="noreferrer">kriscel.com</a></p>
         </div>
         <div className="footer-col">
           <h4>Quick Links</h4>
@@ -517,7 +556,7 @@ export default function App() {
         <div className="quick-view-overlay" onClick={() => setQuickViewProduct(null)}>
           <motion.div className="quick-view-modal glass" initial={{ opacity: 0, y: 16, scale: 0.98 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 8 }} transition={{ duration: 0.25 }} onClick={(e) => e.stopPropagation()}>
             <button className="quick-close" onClick={() => setQuickViewProduct(null)} aria-label="Close quick view">×</button>
-            <img src={quickViewProduct.img} alt={quickViewProduct.name} />
+            <img src={quickViewProduct.img} alt={quickViewProduct.name} loading="eager" decoding="async" />
             <div className="quick-view-content">
               <p className="tag">Kriscel Signature</p>
               <h3>{quickViewProduct.name}</h3>

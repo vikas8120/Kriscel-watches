@@ -24,7 +24,17 @@ body {
 }
 
 .site { overflow-x: clip; }
-.section { padding: 5.5rem 5vw; }
+.section {
+  padding: 5.5rem 5vw;
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 900px;
+}
+.section,
+.reveal-wrap,
+.catalog-section,
+.showcase {
+  overflow-x: clip;
+}
 h1, h2, h3 { font-family: var(--display); font-weight: 600; letter-spacing: .01em; }
 h4, .brand, .btn, .top-tabs button { font-family: var(--ui); }
 h2 {
@@ -43,12 +53,16 @@ p { font-size: .98rem; color: #3d3d3d; }
 }
 
 .nav {
-  position: sticky; top: 34px; z-index: 30; margin: 28px auto 14px; width: min(96%, 1400px);
+  position: sticky; top: 0; z-index: 30; margin: 0 auto; width: min(100%, 1400px);
   padding: 12px 16px; border-radius: 18px; display: grid; gap: 10px; align-items: center;
   background: rgba(255,255,255,0.88);
   border: 1px solid #E8D5B5;
   box-shadow: 0 14px 30px rgba(194, 138, 46, 0.14);
+  transition: transform .28s ease, opacity .28s ease, box-shadow .28s ease;
+  will-change: transform;
 }
+.nav-hidden { transform: translateY(-120%); opacity: 0; pointer-events: none; }
+.nav-visible { transform: translateY(0); opacity: 1; pointer-events: auto; }
 .brand { font-weight: 800; letter-spacing: 0.06em; font-size: 1.65rem; color: var(--dark-accent); }
 .brand { text-decoration: none; color: var(--text); }
 nav { display: none; gap: 20px; }
@@ -123,13 +137,14 @@ nav a.active::after { transform: scaleX(1); }
 }
 .btn.secondary { background: #fff; color: var(--text); border: 1px solid var(--card-border); }
 
-.hero { padding: 1.4rem 5vw 0; position: relative; }
+.hero { padding: 0 0 0; position: relative; }
 .hero-banner {
   position: relative;
   border-radius: 6px;
   overflow: hidden;
   border: 1px solid #E8D5B5;
   box-shadow: 0 18px 48px rgba(103, 66, 49, 0.2);
+  width: 100%;
   height: calc(100svh - 150px);
   min-height: 640px;
 }
@@ -230,6 +245,13 @@ nav a.active::after { transform: scaleX(1); }
 }
 .center { text-align: center; }
 .show-img { height: 420px; }
+.section .swiper,
+.section .swiper-wrapper {
+  max-width: 100%;
+}
+.section .swiper {
+  overflow: hidden;
+}
 .best-grid { display: grid; gap: 18px; grid-template-columns: 1fr; }
 .best-card { background: #fff8f6; display: grid; gap: 14px; }
 .perks { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
@@ -884,6 +906,10 @@ nav a.active::after { transform: scaleX(1); }
   .catalog-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
   .brand-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .store-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 899px) {
+  .hero { padding: 0.8rem 0 0; }
 }
 
 @media (max-width: 1200px) and (min-width: 900px) {
